@@ -366,3 +366,46 @@ footer {
 .form-actions {
   flex-wrap: wrap;
 }
+
+/* ===============================
+   12. Доступность (практика 13)
+   =============================== */
+
+/* Ссылка пропуска к основному содержимому.
+   Скрыта за верхним краем экрана и появляется при фокусе с клавиатуры.
+   display: none не используется: иначе ссылка была бы недоступна для Tab. */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 1000;
+  padding: 8px 12px;
+  color: #ffffff;
+  background-color: #111111;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 16px;
+}
+
+/* Видимый фокус на всех интерактивных элементах. */
+:focus-visible {
+  outline: 3px solid var(--color-primary, #0057b8);
+  outline-offset: 3px;
+}
+
+.site-nav__list a:focus-visible,
+.button:focus-visible,
+.order-form__input:focus-visible,
+.order-form__textarea:focus-visible,
+.order-form__select:focus-visible,
+.form-field input:focus-visible,
+.form-field select:focus-visible,
+.form-field textarea:focus-visible,
+.form-actions button:focus-visible {
+  outline: 3px solid var(--color-primary, #0057b8);
+  outline-offset: 3px;
+}
