@@ -1,0 +1,368 @@
+/*
+  Адаптивные стили для контрольной работы №3.
+  Подход: Mobile First.
+  Базовые стили рассчитаны на мобильный экран.
+  Расширения добавляются через min-width медиазапросы.
+*/
+
+/* ===============================
+   1. Базовые адаптивные правила
+   =============================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Изображения и видео не выходят за пределы контейнера. */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Временная защита от горизонтального скролла.
+   Не заменяет исправление ошибок в раскладке. */
+body {
+  overflow-x: hidden;
+}
+
+/* ===============================
+   2. Контейнеры и секции
+   =============================== */
+
+/* На мобильном экране отступ от краёв меньше. */
+header,
+main,
+footer {
+  padding: var(--space-md);
+}
+
+/* Ширина контейнера: вся доступная ширина, но не больше 1200px.
+   Боковой отступ уже задан у main, поэтому здесь 100%. */
+.site-header,
+.hero,
+.section,
+.aside-info,
+.catalog-layout,
+.breadcrumbs,
+.success-message {
+  width: min(100%, 1200px);
+  margin-inline: auto;
+}
+
+/* clamp(): отступ растёт вместе с шириной экрана. */
+.section {
+  padding-block: clamp(24px, 5vw, 64px);
+}
+
+@media (min-width: 768px) {
+  header,
+  main,
+  footer {
+    padding: var(--space-lg);
+  }
+}
+
+/* ===============================
+   3. Навигация
+   =============================== */
+
+/* Мобильный экран: пункты меню в колонку. */
+.site-nav__list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-sm, 8px);
+  padding: 0;
+  margin: var(--space-md) 0 0;
+  list-style: none;
+}
+
+.site-nav__list a {
+  display: block;
+  padding: 12px 16px;
+}
+
+/* Планшет и desktop: меню в строку с переносом. */
+@media (min-width: 768px) {
+  .site-nav__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+/* ===============================
+   4. Hero-блок
+   =============================== */
+
+.hero {
+  display: grid;
+  gap: var(--space-lg, 24px);
+  align-items: center;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(28px, 7vw, 56px);
+  line-height: 1.1;
+}
+
+.hero p {
+  margin: 0;
+}
+
+.hero .button {
+  justify-self: start;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}
+
+/* ===============================
+   5. Сетка карточек
+   =============================== */
+
+/* Мобильный экран: одна колонка. */
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md, 16px);
+}
+
+/* min-width: 0 не даёт содержимому растянуть карточку шире колонки. */
+.product-card {
+  min-width: 0;
+}
+
+.product-card h3,
+.product-card p {
+  overflow-wrap: anywhere;
+}
+
+/* Небольшой планшет: две колонки. */
+@media (min-width: 640px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Desktop: три колонки (в проекте три товара). */
+@media (min-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-lg, 24px);
+  }
+}
+
+/* ===============================
+   6. Страница каталога
+   =============================== */
+
+/* Мобильный экран: фильтр над списком товаров. */
+.catalog-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: none;
+  gap: var(--space-lg, 24px);
+}
+
+.catalog-filters,
+.catalog-products {
+  grid-area: auto;
+  min-width: 0;
+}
+
+.catalog-filters {
+  order: -1;
+}
+
+/* Desktop: фильтр слева и закреплён при прокрутке. */
+@media (min-width: 1024px) {
+  .catalog-layout {
+    grid-template-columns: 280px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .catalog-filters {
+    position: sticky;
+    top: var(--space-lg);
+    order: initial;
+  }
+}
+
+/* ===============================
+   7. Изображения карточек
+   =============================== */
+
+/* aspect-ratio задаёт соотношение сторон.
+   contain вместо cover: на фото товара смартфон занимает почти весь кадр,
+   и cover обрезал бы его сверху и снизу. */
+.product-card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  border-radius: var(--radius-md, 8px);
+}
+
+/* ===============================
+   8. Страница товара
+   =============================== */
+
+/* Мобильный экран: изображение над описанием. */
+.product {
+  display: grid;
+  gap: var(--space-lg);
+  width: min(100%, 1200px);
+  margin-inline: auto;
+}
+
+.product__image {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.product__info h1 {
+  margin-top: 0;
+  font-size: clamp(24px, 5vw, 40px);
+  line-height: 1.2;
+}
+
+.product__price {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Планшет и desktop: две колонки. */
+@media (min-width: 768px) {
+  .product {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+  }
+}
+
+/* ===============================
+   9. Форма заявки (order.html)
+   =============================== */
+
+/* Мобильный экран: форма в одну колонку. */
+.order-form {
+  display: grid;
+  gap: var(--space-md, 16px);
+}
+
+.order-form__group {
+  display: grid;
+  gap: var(--space-xs, 4px);
+}
+
+/* min-height: 44px — удобный размер для нажатия пальцем. */
+.order-form__input,
+.order-form__textarea,
+.order-form__select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
+}
+
+.order-form__textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Кнопка отправки не растягивается на всю ширину формы. */
+.order-form__group .button {
+  justify-self: start;
+}
+
+/* Планшет и desktop: часть полей в две колонки. */
+@media (min-width: 768px) {
+  .order-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .order-form__group--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Поля формы в модальном окне тоже делаем удобными для нажатия. */
+.form-field input,
+.form-field select,
+.form-field textarea {
+  min-height: 44px;
+}
+
+/* ===============================
+   10. Таблица характеристик
+   =============================== */
+
+/* Если таблице не хватает ширины, прокручивается только контейнер,
+   а не вся страница. */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.product-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+.product-table caption {
+  margin-bottom: var(--space-sm);
+  font-weight: 700;
+  text-align: left;
+}
+
+.product-table th,
+.product-table td {
+  padding: 12px;
+  border: 1px solid var(--color-border, #ddd);
+  text-align: left;
+}
+
+.product-table th {
+  background-color: var(--color-surface);
+}
+
+/* ===============================
+   11. Модальное окно
+   =============================== */
+
+/* Окно не выходит за пределы экрана, длинное содержимое прокручивается. */
+.order-dialog {
+  width: min(100% - 32px, 560px);
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+}
+
+.order-dialog::backdrop {
+  background: rgb(0 0 0 / 0.5);
+}
+
+/* Кнопки формы в модальном окне переносятся на узком экране. */
+.form-actions {
+  flex-wrap: wrap;
+}
