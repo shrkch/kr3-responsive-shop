@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
   <header>
     <div class="site-header">
       <a class="site-logo" href="index.html">ShopProject</a>
@@ -27,7 +29,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main" class="main">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
       <a href="index.html">Главная</a>
       <span><a href="catalog.html">Каталог</a></span>
@@ -64,37 +66,37 @@
           <caption>Характеристики товара</caption>
           <thead>
             <tr>
-              <th>Параметр</th>
-              <th>Значение</th>
+              <th scope="col">Параметр</th>
+              <th scope="col">Значение</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Экран</td>
+              <th scope="row">Экран</th>
               <td>6,9" OLED, 120 Гц</td>
             </tr>
             <tr>
-              <td>Процессор</td>
+              <th scope="row">Процессор</th>
               <td>Apple A19</td>
             </tr>
             <tr>
-              <td>Фронтальная камера</td>
+              <th scope="row">Фронтальная камера</th>
               <td>18 Мп</td>
             </tr>
             <tr>
-              <td>Память</td>
+              <th scope="row">Память</th>
               <td>256 / 512 ГБ</td>
             </tr>
             <tr>
-              <td>Цвет</td>
+              <th scope="row">Цвет</th>
               <td>Glacier (светло-голубой)</td>
             </tr>
             <tr>
-              <td>Цена</td>
+              <th scope="row">Цена</th>
               <td>1000 руб.</td>
             </tr>
             <tr>
-              <td>Наличие</td>
+              <th scope="row">Наличие</th>
               <td>В наличии</td>
             </tr>
           </tbody>
