@@ -6,6 +6,7 @@
   <meta name="description" content="Каталог товаров учебного интернет-магазина.">
   <title>Каталог товаров — Учебный интернет-магазин</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
   <header>
@@ -16,6 +17,7 @@
         <ul class="site-nav__list">
           <li><a href="index.html">Главная</a></li>
           <li><a href="catalog.html" aria-current="page">Каталог</a></li>
+          <li><a href="order.html">Заявка</a></li>
           <li><a href="contacts.html">Контакты</a></li>
           <li><a href="index.html#advantages">Преимущества</a></li>
           <li><a href="index.html#popular">Популярные товары</a></li>
@@ -76,27 +78,66 @@
         <h2>Список товаров</h2>
         <div class="products-grid">
           <article class="product-card">
-            <img class="product-card__image" src="images/product1.jpg" alt="iPhone 18 Pro Max Glacier">
+            <img
+              class="product-card__image"
+              src="images/product1-640.jpg"
+              srcset="images/product1-480.jpg 480w,
+                      images/product1-640.jpg 640w,
+                      images/product1-960.jpg 960w"
+              sizes="(max-width: 639px) 100vw,
+                     (max-width: 1023px) 50vw,
+                     33vw"
+              alt="iPhone 18 Pro Max Glacier"
+              width="640"
+              height="640"
+              loading="lazy"
+            >
             <h3>iPhone 18 Pro Max Glacier</h3>
             <p>Экран 6,9" OLED, 120 Гц, процессор Apple A19, фронтальная камера 18 Мп, память 256/512 ГБ.</p>
             <p>Цена: 1000 руб.</p>
-            <a class="button" href="index.html#popular">Подробнее</a>
+            <a class="button" href="product.html">Подробнее</a>
           </article>
 
           <article class="product-card">
-            <img class="product-card__image" src="images/product2.jpg" alt="iPhone 18 Pro Max Silver">
+            <img
+              class="product-card__image"
+              src="images/product2-640.jpg"
+              srcset="images/product2-480.jpg 480w,
+                      images/product2-640.jpg 640w,
+                      images/product2-960.jpg 960w"
+              sizes="(max-width: 639px) 100vw,
+                     (max-width: 1023px) 50vw,
+                     33vw"
+              alt="iPhone 18 Pro Max Silver"
+              width="640"
+              height="640"
+              loading="lazy"
+            >
             <h3>iPhone 18 Pro Max Silver</h3>
             <p>Экран 6,9" OLED, 120 Гц, процессор Apple A19, фронтальная камера 18 Мп, память 256/512 ГБ.</p>
             <p>Цена: 1500 руб.</p>
-            <a class="button" href="index.html#popular">Подробнее</a>
+            <a class="button" href="product.html">Подробнее</a>
           </article>
 
           <article class="product-card">
-            <img class="product-card__image" src="images/product3.jpg" alt="iPhone 18 Pro Max Burgundy">
+            <img
+              class="product-card__image"
+              src="images/product3-640.jpg"
+              srcset="images/product3-480.jpg 480w,
+                      images/product3-640.jpg 640w,
+                      images/product3-960.jpg 960w"
+              sizes="(max-width: 639px) 100vw,
+                     (max-width: 1023px) 50vw,
+                     33vw"
+              alt="iPhone 18 Pro Max Burgundy"
+              width="640"
+              height="640"
+              loading="lazy"
+            >
             <h3>iPhone 18 Pro Max Burgundy</h3>
             <p>Экран 6,9" OLED, 120 Гц, процессор Apple A19, фронтальная камера 18 Мп, память 256/512 ГБ.</p>
             <p>Цена: 2000 руб.</p>
-            <a class="button" href="index.html#popular">Подробнее</a>
+            <a class="button" href="product.html">Подробнее</a>
           </article>
         </div>
       </section>
